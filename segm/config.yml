@@ -94,6 +94,13 @@ model:
     n_heads: 16
     n_layers: 24
     normalization: vit
+  vit_large_patch18_180:
+    image_size: 180
+    patch_size: 18
+    d_model: 1024
+    n_heads: 16
+    n_layers: 24
+    normalization: vit
 decoder:
   linear: {}
   deeplab_dec:
@@ -135,7 +142,7 @@ dataset:
     eval_freq: 2
     batch_size: 8
     learning_rate: 0.001
-    im_size: 512
-    crop_size: 512
-    window_size: 512
-    window_stride: 512
+    im_size: 180
+    crop_size: 180
+    window_size: 180
+    window_stride: 180
