@@ -25,7 +25,7 @@ class FlairDataset(CustomDataset):
         'null',
         'tissue3')
 
-    PALETTE = [[120, 120, 120], [180, 120, 120], [6, 230, 230], [80, 50, 50],[4, 200, 3]]
+    PALETTE = [[0,0,0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
 
     def __init__(self, **kwargs):
         super(FlairDataset, self).__init__(

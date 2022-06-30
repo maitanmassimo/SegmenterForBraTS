@@ -30,7 +30,7 @@ class FlairDataset(BaseMMSeg):
             **kwargs,
         )
         self.names, self.colors = utils.dataset_cat_description(FLAIR_CATS_PATH)
-        self.n_cls = 5#4
+        self.n_cls = 4
         self.ignore_label = 0
         self.reduce_zero_label = True
 
