@@ -101,6 +101,13 @@ model:
     n_heads: 16
     n_layers: 24
     normalization: vit
+  vit_large_patch9_180:
+    image_size: 180
+    patch_size: 9
+    d_model: 1024
+    n_heads: 16
+    n_layers: 24
+    normalization: vit
 decoder:
   linear: {}
   deeplab_dec:
@@ -108,7 +115,7 @@ decoder:
   mask_transformer:
     drop_path_rate: 0.0
     dropout: 0.1
-    n_layers: 2
+    n_layers: 5
 dataset:
   ade20k:
     epochs: 64
@@ -138,9 +145,9 @@ dataset:
     window_size: 768
     window_stride: 512
   flair:
-    epochs: 64
+    epochs: 128
     eval_freq: 2
-    batch_size: 8
+    batch_size: 4
     learning_rate: 0.001
     im_size: 180
     crop_size: 180
