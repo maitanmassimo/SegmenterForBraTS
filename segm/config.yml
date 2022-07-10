@@ -111,9 +111,9 @@ model:
   vit_small_patch9_180:
     image_size: 180
     patch_size: 9
-    d_model: 180
-    n_heads: 4
-    n_layers: 12
+    d_model: 64
+    n_heads: 8
+    n_layers: 6
     normalization: vit
 decoder:
   linear: {}
@@ -152,9 +152,9 @@ dataset:
     window_size: 768
     window_stride: 512
   flair:
-    epochs: 512
-    eval_freq: 20
-    batch_size: 8
+    epochs: 1000
+    eval_freq: 5
+    batch_size: 4
     learning_rate: 0.001
     im_size: 180
     crop_size: 180

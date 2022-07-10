@@ -22,7 +22,6 @@ class FlairDataset(CustomDataset):
         'background',
         'tissue1',
         'tissue2',
-        'null',
         'tissue3')
 
     PALETTE = [[0,0,0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
