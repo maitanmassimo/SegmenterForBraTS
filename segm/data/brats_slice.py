@@ -8,11 +8,11 @@ from segm.config import dataset_dir
 from mmseg.datasets import build_dataset
 from mmseg.datasets.builder import DATASETS
 from mmseg.datasets.custom import CustomDataset
-FLAIR_CONFIG_PATH = Path(__file__).parent / "config" / "flair.py"
-FLAIR_CATS_PATH = Path(__file__).parent / "config" / "flair.yml"
+brats_slice_CONFIG_PATH = Path(__file__).parent / "config" / "brats_slice.py"
+brats_slice_CATS_PATH = Path(__file__).parent / "config" / "brats_slice.yml"
 
 
-class FlairDataset(BaseMMSeg):
+class BratsSliceDataset(BaseMMSeg):
     def __init__(self, image_size, crop_size, split, **kwargs):
     #def __init__(self, image_size=180, crop_size=180, split='train', **kwargs):
         print("CLASS DEFINITION ARGS: ")
@@ -25,18 +25,18 @@ class FlairDataset(BaseMMSeg):
             image_size,
             crop_size,
             split,
-            FLAIR_CONFIG_PATH,
+            brats_slice_CONFIG_PATH,
             #normalization = normalization,
             **kwargs,
         )
-        self.names, self.colors = utils.dataset_cat_description(FLAIR_CATS_PATH)
+        self.names, self.colors = utils.dataset_cat_description(brats_slice_CATS_PATH)
         self.n_cls = 4
         self.ignore_label = 0
         self.reduce_zero_label = True
 
     def update_default_config(self, config):
         root_dir = dataset_dir()
-        path = Path(root_dir) / "flair"
+        path = Path(root_dir) / "brats_slice"
         config.data_root = path
         if self.split == "train":
             config.data.train.data_root = path / ""#"ADEChallengeData2016"

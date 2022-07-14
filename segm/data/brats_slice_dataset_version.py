@@ -11,7 +11,7 @@ from segm.data import utils
 from segm.config import dataset_dir
 
 
-class FlairDataset(Dataset):
+class BratsSliceDataset(Dataset):
     def __init__(
         self,
         #root_dir,

@@ -4,7 +4,7 @@ from segm.data import ImagenetDataset
 from segm.data import ADE20KSegmentation
 from segm.data import PascalContextDataset
 from segm.data import CityscapesDataset
-from segm.data import FlairDataset
+from segm.data import BratsSliceDataset
 from segm.data import Loader
 
 
@@ -26,8 +26,8 @@ def create_dataset(dataset_kwargs):
         dataset = PascalContextDataset(split=split, **dataset_kwargs)
     elif dataset_name == "cityscapes":
         dataset = CityscapesDataset(split=split, **dataset_kwargs)
-    elif dataset_name == "flair":
-        dataset = FlairDataset(split=split, **dataset_kwargs)
+    elif dataset_name == "brats_slice":
+        dataset = BratsSliceDataset(split=split, **dataset_kwargs)
     else:
         raise ValueError(f"Dataset {dataset_name} is unknown.")
 

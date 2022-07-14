@@ -26,9 +26,9 @@ segm/data/ade20k.py
 segm/data/base.py
 segm/data/cityscapes.py
 segm/data/factory.py
-segm/data/flair.py
-segm/data/flair_dataset_version.py
-segm/data/flair_mmseg_version.py
+segm/data/brats_slice.py
+segm/data/brats_slice_dataset_version.py
+segm/data/brats_slice_mmseg_version.py
 segm/data/imagenet.py
 segm/data/loader.py
 segm/data/pascal_context.py
@@ -37,8 +37,8 @@ segm/data/config/ade20k.py
 segm/data/config/ade20k.yml
 segm/data/config/cityscapes.py
 segm/data/config/cityscapes.yml
-segm/data/config/flair.py
-segm/data/config/flair.yml
+segm/data/config/brats_slice.py
+segm/data/config/brats_slice.yml
 segm/data/config/pascal_context.py
 segm/data/config/pascal_context.yml
 segm/eval/accuracy.py

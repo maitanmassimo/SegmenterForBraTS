@@ -23,7 +23,7 @@ from contextlib import suppress
 from segm.utils.distributed import sync_model
 from segm.engine import train_one_epoch, evaluate
 
-from segm.data import FlairDataset
+from segm.data import BratsSliceDataset
 
 @click.command(help="")
 @click.option("--log-dir", type=str, help="logging directory")
