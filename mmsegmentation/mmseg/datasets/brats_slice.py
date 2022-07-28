@@ -24,7 +24,7 @@ class BratsSliceDataset(CustomDataset):
         'tissue2',
         'tissue3')
 
-    PALETTE = [[0,0,0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
+    PALETTE = [[0, 0, 0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
 
     def __init__(self, **kwargs):
         super(BratsSliceDataset, self).__init__(
