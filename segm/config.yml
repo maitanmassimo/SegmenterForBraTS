@@ -154,7 +154,7 @@ dataset:
   brats_slice:
     epochs: 1000
     eval_freq: 5
-    batch_size: 4
+    batch_size: 1
     learning_rate: 0.001
     im_size: 180
     crop_size: 180
