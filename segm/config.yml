@@ -110,7 +110,7 @@ model:
     normalization: vit
   vit_small_patch9_180:
     image_size: 180
-    patch_size: 9
+    patch_size: 3
     d_model: 512
     n_heads: 4
     n_layers: 4
