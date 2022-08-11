@@ -111,7 +111,7 @@ model:
   vit_small_patch6_180:
     image_size: 180
     patch_size: 6
-    d_model: 512
+    d_model: 256
     n_heads: 4
     n_layers: 4
     normalization: vit
