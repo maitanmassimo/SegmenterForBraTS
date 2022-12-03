@@ -114,6 +114,12 @@ model:
     d_model: 256
     n_heads: 4
     n_layers: 4
+  vit_small_patch30_180:
+    image_size: 180
+    patch_size: 30
+    d_model: 1024
+    n_heads: 4
+    n_layers: 4
     normalization: vit
 decoder:
   linear: {}
