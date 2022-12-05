@@ -107,6 +107,7 @@ def evaluate(
         val_seg_gt,
         data_loader.unwrapped.n_cls,
         ignore_index=IGNORE_LABEL,
+        ret_cat_iou=True,
         distributed=ptu.distributed,
     )
     print("Printing scores (engine)\n")
