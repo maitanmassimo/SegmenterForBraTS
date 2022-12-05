@@ -109,7 +109,8 @@ def evaluate(
         ignore_index=IGNORE_LABEL,
         distributed=ptu.distributed,
     )
-
+    print("Printing scores (engine)\n")
+    print(scores)
     for k, v in scores.items():
         logger.update(**{f"{k}": v, "n": 1})
 
