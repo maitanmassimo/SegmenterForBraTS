@@ -124,7 +124,7 @@ model:
   vit_tiny_patch4_180:
     image_size: 180
     patch_size: 4
-    d_model: 1024
+    d_model: 256
     n_heads: 4
     n_layers: 4
     normalization: vit
