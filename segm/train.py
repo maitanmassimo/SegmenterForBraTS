@@ -298,6 +298,7 @@ def main(
             }
             val_stats = {}
             if eval_epoch:
+                print(eval_logger.meters)
                 val_stats = {
                     k: meter.global_avg for k, meter in eval_logger.meters.items()
                 }
