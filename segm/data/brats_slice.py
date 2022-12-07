@@ -30,7 +30,7 @@ class BratsSliceDataset(BaseMMSeg):
             **kwargs,
         )
         self.names, self.colors = utils.dataset_cat_description(brats_slice_CATS_PATH)
-        self.n_cls = 4
+        self.n_cls = 5
         self.ignore_label = 0
         self.reduce_zero_label = True
 
