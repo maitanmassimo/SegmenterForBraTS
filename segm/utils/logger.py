@@ -4,6 +4,7 @@ https://github.com/facebookresearch/deit/blob/main/utils.py
 
 import io
 import os
+import numpy as np
 import time
 from collections import defaultdict, deque
 import datetime
@@ -93,7 +94,7 @@ class MetricLogger(object):
             #print("v type: {}".format(type(v)))
             if isinstance(v, torch.Tensor):
                 v = v.item()
-            assert isinstance(v, (float, int, str))
+            assert isinstance(v, (float, int, np.ndarray))
             self.meters[k].update(v, n)
 
     def __getattr__(self, attr):
