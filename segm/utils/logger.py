@@ -86,14 +86,14 @@ class MetricLogger(object):
 
     def update(self, n=1, **kwargs):
         for k, v in kwargs.items():
-            print("Logger")
-            print("k: {}".format(k))
-            print("k type: {}".format(type(k)))
-            print("v: {}".format(v))
-            print("v type: {}".format(type(v)))
+            #print("Logger")
+            #print("k: {}".format(k))
+            #print("k type: {}".format(type(k)))
+            #print("v: {}".format(v))
+            #print("v type: {}".format(type(v)))
             if isinstance(v, torch.Tensor):
                 v = v.item()
-            assert isinstance(v, (float, int, list))
+            assert isinstance(v, (float, int, str))
             self.meters[k].update(v, n)
 
     def __getattr__(self, attr):
