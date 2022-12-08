@@ -91,7 +91,7 @@ class MetricLogger(object):
             print("v: {}".format(v))
             if isinstance(v, torch.Tensor):
                 v = v.item()
-            assert isinstance(v, (float, int))
+            assert isinstance(v, (float, int, list))
             self.meters[k].update(v, n)
 
     def __getattr__(self, attr):
