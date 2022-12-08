@@ -89,7 +89,7 @@ class MetricLogger(object):
             print("Logger")
             print("k: {}".format(k))
             print("v: {}".format(v))
-            if isinstance(v, torch.Tensor):
+            if isinstance(v, torch.Tensor) and k != "cat_iou":
                 v = v.item()
             assert isinstance(v, (float, int, list))
             self.meters[k].update(v, n)
