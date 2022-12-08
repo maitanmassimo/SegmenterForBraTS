@@ -88,8 +88,10 @@ class MetricLogger(object):
         for k, v in kwargs.items():
             print("Logger")
             print("k: {}".format(k))
+            print("k type: {}".format(type(k)))
             print("v: {}".format(v))
-            if isinstance(v, torch.Tensor) and k != "cat_iou":
+            print("v type: {}".format(type(v)))
+            if isinstance(v, torch.Tensor):
                 v = v.item()
             assert isinstance(v, (float, int, list))
             self.meters[k].update(v, n)
