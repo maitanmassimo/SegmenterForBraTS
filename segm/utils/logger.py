@@ -90,7 +90,7 @@ class MetricLogger(object):
             if isinstance(v, torch.Tensor):
                 v = v.item()
             if isinstance(v, np.ndarray):
-                v = v.tostring()
+                v = np.array_str(v)
             print("Logger")
             print("k: {}".format(k))
             print("k type: {}".format(type(k)))
