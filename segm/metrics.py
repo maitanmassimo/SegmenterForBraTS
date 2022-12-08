@@ -90,10 +90,6 @@ def compute_metrics(
     tmp_dir=None,
     distributed=False,
 ):
-    print("Seg prediction:")
-    print(seg_pred)
-    print("Seg ground thruth")
-    print(seg_gt)
 
     ret_metrics_mean = torch.zeros(3, dtype=float, device=ptu.device)
     if ptu.dist_rank == 0:
