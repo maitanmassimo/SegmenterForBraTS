@@ -95,7 +95,7 @@ class MetricLogger(object):
             if isinstance(v, torch.Tensor):
                 v = v.item()
             if isinstance(v, np.ndarray):
-                v = np.array2string(v)
+                v = v.tostring()
             assert isinstance(v, (float, int, str))
             self.meters[k].update(v, n)
 
