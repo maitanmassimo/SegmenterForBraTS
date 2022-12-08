@@ -299,9 +299,15 @@ def main(
             val_stats = {}
             if eval_epoch:
                 print(eval_logger)
-                val_stats = {
-                    k: meter.global_avg for k, meter in eval_logger.meters.items()
-                }
+                #val_stats = {
+                #    k: meter.global_avg for k, meter in eval_logger.meters.items()
+                #}
+                for k, meter in eval_logger.meters.items():
+                    if isinstance(meter, str):
+                        val_stats[k] = meter
+                    else:
+                        val_stats[k] = meter.global_avg 
+                
 
             log_stats = {
                 **{f"train_{k}": v for k, v in train_stats.items()},

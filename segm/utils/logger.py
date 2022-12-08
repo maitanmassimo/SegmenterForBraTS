@@ -60,10 +60,7 @@ class SmoothedValue(object):
 
     @property
     def global_avg(self):
-        if isinstance(self, (float, int)):
-            return self.total / self.count
-        else:
-            return self
+        return self.total / self.count
 
     @property
     def max(self):
@@ -94,11 +91,11 @@ class MetricLogger(object):
                 v = v.item()
             if isinstance(v, np.ndarray):
                 v = np.array_str(v)
-            #print("Logger")
-            #print("k: {}".format(k))
-            #print("k type: {}".format(type(k)))
-            #print("v: {}".format(v))
-            #print("v type: {}".format(type(v)))
+            print("Logger")
+            print("k: {}".format(k))
+            print("k type: {}".format(type(k)))
+            print("v: {}".format(v))
+            print("v type: {}".format(type(v)))
             assert isinstance(v, (float, int, str))
             if isinstance(v, (float, int)):
                 self.meters[k].update(v, n)
