@@ -97,7 +97,10 @@ class MetricLogger(object):
             print("v: {}".format(v))
             print("v type: {}".format(type(v)))
             assert isinstance(v, (float, int, str))
-            self.meters[k].update(v, n)
+            if isinstance(v, (float, int)):
+                self.meters[k].update(v, n)
+            else:
+                self.meters[k] = v
 
     def __getattr__(self, attr):
         if attr in self.meters:
