@@ -30,7 +30,7 @@ class BratsSliceDataset(CustomDataset):
         super(BratsSliceDataset, self).__init__(
             img_suffix='.png',
             seg_map_suffix='.png',
-            reduce_zero_label=True,
+            reduce_zero_label=False,
             **kwargs)
 
     def results2img(self, results, imgfile_prefix, to_label_id):
