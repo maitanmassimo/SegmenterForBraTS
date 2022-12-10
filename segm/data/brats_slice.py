@@ -8,6 +8,7 @@ from segm.config import dataset_dir
 from mmseg.datasets import build_dataset
 from mmseg.datasets.builder import DATASETS
 from mmseg.datasets.custom import CustomDataset
+from segm.data.utils import IGNORE_LABEL #new
 brats_slice_CONFIG_PATH = Path(__file__).parent / "config" / "brats_slice.py"
 brats_slice_CATS_PATH = Path(__file__).parent / "config" / "brats_slice.yml"
 
@@ -31,8 +32,8 @@ class BratsSliceDataset(BaseMMSeg):
         )
         self.names, self.colors = utils.dataset_cat_description(brats_slice_CATS_PATH)
         self.n_cls = 4
-        self.ignore_label = None
-        self.reduce_zero_label = False#True
+        self.ignore_label = IGNORE_LABEL#None
+        self.reduce_zero_label = True#False
 
     def update_default_config(self, config):
         root_dir = dataset_dir()
