@@ -19,18 +19,19 @@ class BratsSliceDataset(CustomDataset):
     '.png'.
     """
     CLASSES = (
-        'background',
+        #'background',
         'tissue1',
         'tissue2',
         'tissue3')
 
-    PALETTE = [[0, 0, 0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
+    #PALETTE = [[0, 0, 0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
+    PALETTE = [[63, 63, 63], [127, 127, 127], [255, 255, 255]]
 
     def __init__(self, **kwargs):
         super(BratsSliceDataset, self).__init__(
             img_suffix='.png',
             seg_map_suffix='.png',
-            reduce_zero_label=False,
+            reduce_zero_label=True,#False,
             **kwargs)
 
     def results2img(self, results, imgfile_prefix, to_label_id):
@@ -64,7 +65,7 @@ class BratsSliceDataset(CustomDataset):
             # But the index range of output is from 0 to 149.
             # That is because we set reduce_zero_label=True.
             
-            #result = result + 1 #da scommentare se mettiamo reduce_zero_label a true
+            result = result + 1 #da scommentare se mettiamo reduce_zero_label a true
 
             output = Image.fromarray(result.astype(np.uint8))
             output.save(png_filename)
