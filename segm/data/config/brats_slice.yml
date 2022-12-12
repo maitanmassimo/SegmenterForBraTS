@@ -2,27 +2,27 @@
   - 0
   - 0
   - 0
-  id: 255
+  id: 0
   isthing: 0
   name: background
 - color:
   - 63
   - 63
   - 63
-  id: 0 #1
+  id: 1
   isthing: 0
   name: tissue1
 - color:
   - 127
   - 127
   - 127
-  id: 1 #2
+  id: 2
   isthing: 0
   name: tissue2
 - color:
   - 255
   - 255
   - 255
-  id: 2 #3
+  id: 3
   isthing: 0
   name: tissue3
