@@ -31,9 +31,9 @@ class BratsSliceDataset(BaseMMSeg):
             **kwargs,
         )
         self.names, self.colors = utils.dataset_cat_description(brats_slice_CATS_PATH)
-        self.n_cls = 3#4
-        self.ignore_label = IGNORE_LABEL#None
-        self.reduce_zero_label = True #False
+        self.n_cls = 4#3
+        self.ignore_label = None#IGNORE_LABEL
+        self.reduce_zero_label = False #True
 
     def update_default_config(self, config):
         root_dir = dataset_dir()

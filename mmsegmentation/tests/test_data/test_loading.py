@@ -85,7 +85,7 @@ class TestLoading(object):
         assert results['gt_semantic_seg'].dtype == np.uint8
 
         # reduce_zero_label
-        transform = LoadAnnotations(reduce_zero_label=True)#False)
+        transform = LoadAnnotations(reduce_zero_label=False)#True)
         results = transform(copy.deepcopy(results))
         assert results['gt_semantic_seg'].shape == (288, 512)
         assert results['gt_semantic_seg'].dtype == np.uint8

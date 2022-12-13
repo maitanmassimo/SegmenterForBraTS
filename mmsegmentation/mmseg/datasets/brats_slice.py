@@ -24,14 +24,14 @@ class BratsSliceDataset(CustomDataset):
         'tissue2',
         'tissue3')
 
-    #PALETTE = [[0, 0, 0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
-    PALETTE = [[63, 63, 63], [127, 127, 127], [255, 255, 255]]
+    PALETTE = [[0, 0, 0], [63, 63, 63], [127, 127, 127], [255, 255, 255]]
+    #PALETTE = [[63, 63, 63], [127, 127, 127], [255, 255, 255]]
 
     def __init__(self, **kwargs):
         super(BratsSliceDataset, self).__init__(
             img_suffix='.png',
             seg_map_suffix='.png',
-            reduce_zero_label=True,#False,
+            reduce_zero_label=False,#True,
             **kwargs)
 
     def results2img(self, results, imgfile_prefix, to_label_id):
