@@ -112,8 +112,8 @@ model:
     image_size: 180
     patch_size: 6
     d_model: 256
-    n_heads: 8
-    n_layers: 8
+    n_heads: 16
+    n_layers: 16
     normalization: vit
   vit_small_patch30_180:
     image_size: 180
@@ -136,7 +136,7 @@ decoder:
   mask_transformer:
     drop_path_rate: 0.0
     dropout: 0.1
-    n_layers: 4
+    n_layers: 8
 dataset:
   ade20k:
     epochs: 64
