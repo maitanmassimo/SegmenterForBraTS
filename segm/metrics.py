@@ -8,7 +8,7 @@ import pickle as pkl
 from pathlib import Path
 import tempfile
 import shutil
-from mmseg.core import mean_iou
+from mmseg.core import mean_iou, mean_dice
 
 """
 ImageNet classifcation accuracy
