@@ -112,8 +112,8 @@ model:
     image_size: 180
     patch_size: 6
     d_model: 256
-    n_heads: 16
-    n_layers: 16
+    n_heads: 2
+    n_layers: 2
     normalization: vit
   vit_small_patch30_180:
     image_size: 180
@@ -168,7 +168,7 @@ dataset:
   brats_slice:
     epochs: 3000
     eval_freq: 10
-    batch_size: 1
+    batch_size: 100
     learning_rate: 0.001
     im_size: 180
     crop_size: 180
