@@ -115,6 +115,25 @@ def compute_metrics(
             device=ptu.device,
         )
         cat_iou = ret_metrics[2]
+
+
+        #same for dice (mmaitan)
+        ret_metrics_dice = mean_dice(
+            results=list_seg_pred,
+            gt_seg_maps=list_seg_gt,
+            num_classes=n_cls,
+            ignore_index=ignore_index,
+        )
+        ret_metrics_dice = [ret_metrics_dice["aAcc"], ret_metrics_dice["Acc"], ret_metrics_dice["Dice"]]
+        ret_metrics_dice_mean = torch.tensor(
+            [
+                np.round(np.nanmean(ret_metric_dice.astype(np.float)) * 100, 2)
+                for ret_metric_dice in ret_metrics_dice
+            ],
+            dtype=float,
+            device=ptu.device,
+        )
+        cat_dice = ret_metrics_dice[2]
     # broadcast metrics from 0 to all nodes
     if distributed:
         dist.broadcast(ret_metrics_mean, 0)
@@ -122,4 +141,5 @@ def compute_metrics(
     ret = dict(pixel_accuracy=pix_acc, mean_accuracy=mean_acc, mean_iou=miou)
     if ret_cat_iou and ptu.dist_rank == 0:
         ret["cat_iou"] = cat_iou
+    ret["cat_dice"] = cat_dice
     return ret
