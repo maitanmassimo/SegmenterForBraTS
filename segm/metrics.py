@@ -140,7 +140,7 @@ def compute_metrics(
         dist.broadcast(ret_metrics_dice_mean, 0)
     pix_acc, mean_acc, miou = ret_metrics_mean
     pix_acc_dice, mean_acc_dice, mdice = ret_metrics_dice_mean
-    ret = dict(pixel_accuracy=pix_acc, mean_accuracy=mean_acc, mean_iou=miou, pixel_accuracy_dice=pix_acc_dice, mean_accuracy=mean_acc_dice, mean_dice=mdice)
+    ret = dict(pixel_accuracy=pix_acc, mean_accuracy=mean_acc, mean_iou=miou, pixel_accuracy_dice=pix_acc_dice, mean_accuracy_dice=mean_acc_dice, mean_dice=mdice)
     if ret_cat_iou and ptu.dist_rank == 0:
         ret["cat_iou"] = cat_iou
     ret["cat_dice"] = cat_dice
