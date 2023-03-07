@@ -5,7 +5,8 @@ img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True
 )
 crop_size = (180, 180)
-max_ratio = 4
+#max_ratio = 4
+max_ratio = 1
 train_pipeline = [
     dict(type="LoadImageFromFile"),
     dict(type="LoadAnnotations", reduce_zero_label=False),#True),
