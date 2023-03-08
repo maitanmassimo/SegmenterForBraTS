@@ -64,6 +64,8 @@ def create_vit(model_cfg):
         model_cfg["image_size"][0],
         model_cfg["image_size"][1],
     )
+    print("MODEL FACTORY: default_cfg = {}".format(default_cfg))
+    print("MODEL FACTORY: backbone = {}".format(backbone))
     model = VisionTransformer(**model_cfg)
     if backbone == "vit_base_patch8_384":
         path = os.path.expandvars("$TORCH_HOME/hub/checkpoints/vit_base_patch8_384.pth")
