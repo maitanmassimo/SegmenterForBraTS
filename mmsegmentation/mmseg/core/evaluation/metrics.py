@@ -129,7 +129,7 @@ def total_intersect_and_union(results,
         total_area_union += area_union
         total_area_pred_label += area_pred_label
         total_area_label += area_label
-        total_true_negative += (1-area_union)
+        total_true_negative += (180*180-area_union)
     return total_area_intersect, total_area_union, total_area_pred_label, \
         total_area_label, total_true_negative
 
