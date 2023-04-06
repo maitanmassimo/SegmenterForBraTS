@@ -128,7 +128,7 @@ def compute_metrics(
         )
 
         print("ret_metrics_dice")
-        print(ret_metrics_diuce)
+        print(ret_metrics_dice)
         ret_metrics_dice = [ret_metrics_dice["aAcc"], ret_metrics_dice["Acc"], ret_metrics_dice["Dice"], ret_metrics_dice["whole_tumor_dice"]]
         ret_metrics_dice_mean = torch.tensor(
             [
