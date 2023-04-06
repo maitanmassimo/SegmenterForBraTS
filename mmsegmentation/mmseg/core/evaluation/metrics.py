@@ -119,6 +119,7 @@ def total_intersect_and_union(results,
     total_area_union = torch.zeros((num_classes, ), dtype=torch.float64)
     total_area_pred_label = torch.zeros((num_classes, ), dtype=torch.float64)
     total_area_label = torch.zeros((num_classes, ), dtype=torch.float64)
+    total_true_negative = torch.zeros((num_classes, ), dtype=torch.float64)
     for i in range(num_imgs):
         area_intersect, area_union, area_pred_label, area_label = \
             intersect_and_union(
@@ -302,10 +303,15 @@ def eval_metrics(results,
             acc = total_area_intersect / total_area_label
             ret_metrics['IoU'] = iou
             ret_metrics['Acc'] = acc
+            print(total_true_negative)
             whole_tumor_TP = total_true_negative[0] #aggiunto da me (i tn del bkg sono i tp del whole tumor)
             whole_tumor_FP = total_area_union[0] - total_area_pred_label[0]
             whole_tumor_FN = total_area_pred_label[0] - total_area_intersect[0]
             whole_tumor_iou = whole_tumor_TP / (whole_tumor_TP + whole_tumor_FP + whole_tumor_FN)
+            print(whole_tumor_TP)
+            print(whole_tumor_FP)
+            print(whole_tumor_FN)
+            print(whole_tumor_iou)
             ret_metrics['whole_tumor_IoU'] = whole_tumor_iou
             
         elif metric == 'mDice':
@@ -328,6 +334,8 @@ def eval_metrics(results,
             ret_metrics['Precision'] = precision
             ret_metrics['Recall'] = recall
 
+    print("ret_metrics before mapping")
+    print(ret_metrics)
     ret_metrics = {
         metric: value.numpy()
         for metric, value in ret_metrics.items()
@@ -337,4 +345,6 @@ def eval_metrics(results,
             metric: np.nan_to_num(metric_value, nan=nan_to_num)
             for metric, metric_value in ret_metrics.items()
         })
+    print("ret_metrics after mapping")
+    print(ret_metrics)
     return ret_metrics
