@@ -183,10 +183,11 @@ def eval_dataset(
         scores["inference"] = "single_scale" if not multiscale else "multi_scale"
         suffix = "ss" if not multiscale else "ms"
         scores["cat_iou"] = np.round(100 * scores["cat_iou"], 2).tolist()
+        scores["cat_dice"] = np.round(100 * scores["cat_dice"], 2).tolist()
         for k, v in scores.items():
-            if k != "cat_iou" and k != "inference":
+            if k != "cat_iou" and k != "cat_dice" and k != "inference":
                 scores[k] = v.item()
-            if k != "cat_iou":
+            if k != "cat_iou" and k != "cat_dice" :
                 print(f"{k}: {scores[k]}")
         scores_str = yaml.dump(scores)
         with open(model_dir / f"scores_{suffix}.yml", "w") as f:

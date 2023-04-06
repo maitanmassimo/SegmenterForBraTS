@@ -105,7 +105,7 @@ def compute_metrics(
             num_classes=n_cls,
             ignore_index=ignore_index,
         )
-        ret_metrics = [ret_metrics["aAcc"], ret_metrics["Acc"], ret_metrics["IoU"]]
+        ret_metrics = [ret_metrics["aAcc"], ret_metrics["Acc"], ret_metrics["IoU"], ret_metrics["whole_tumor_IoU"]]
         ret_metrics_mean = torch.tensor(
             [
                 np.round(np.nanmean(ret_metric.astype(np.float)) * 100, 2)
@@ -124,7 +124,7 @@ def compute_metrics(
             num_classes=n_cls,
             ignore_index=ignore_index,
         )
-        ret_metrics_dice = [ret_metrics_dice["aAcc"], ret_metrics_dice["Acc"], ret_metrics_dice["Dice"]]
+        ret_metrics_dice = [ret_metrics_dice["aAcc"], ret_metrics_dice["Acc"], ret_metrics_dice["Dice"], ret_metrics_dice["whole_tumor_dice"]]
         ret_metrics_dice_mean = torch.tensor(
             [
                 np.round(np.nanmean(ret_metric_dice.astype(np.float)) * 100, 2)
@@ -138,9 +138,9 @@ def compute_metrics(
     if distributed:
         dist.broadcast(ret_metrics_mean, 0)
         dist.broadcast(ret_metrics_dice_mean, 0)
-    pix_acc, mean_acc, miou = ret_metrics_mean
-    pix_acc_dice, mean_acc_dice, mdice = ret_metrics_dice_mean
-    ret = dict(pixel_accuracy=pix_acc, mean_accuracy=mean_acc, mean_iou=miou, pixel_accuracy_dice=pix_acc_dice, mean_accuracy_dice=mean_acc_dice, mean_dice=mdice)
+    pix_acc, mean_acc, miou, wt_iou = ret_metrics_mean
+    pix_acc_dice, mean_acc_dice, mdice, wt_dice = ret_metrics_dice_mean
+    ret = dict(pixel_accuracy=pix_acc, mean_accuracy=mean_acc, mean_iou=miou, pixel_accuracy_dice=pix_acc_dice, mean_accuracy_dice=mean_acc_dice, mean_dice=mdice, whole_tumor_iou = wt_dice, whole_tumor_dice = wt_dice)
     if ret_cat_iou and ptu.dist_rank == 0:
         ret["cat_iou"] = cat_iou
     ret["cat_dice"] = cat_dice

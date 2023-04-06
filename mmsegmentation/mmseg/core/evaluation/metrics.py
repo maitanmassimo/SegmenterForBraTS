@@ -110,6 +110,8 @@ def total_intersect_and_union(results,
              classes.
          ndarray: The prediction histogram on all classes.
          ndarray: The ground truth histogram on all classes.
+         agg mmaitan: aggiungiamo anche la somma dei true negative
+         come ultimo parametro
     """
     num_imgs = len(results)
     assert len(gt_seg_maps) == num_imgs
@@ -126,8 +128,9 @@ def total_intersect_and_union(results,
         total_area_union += area_union
         total_area_pred_label += area_pred_label
         total_area_label += area_label
+        total_true_negative += (1-area_union)
     return total_area_intersect, total_area_union, total_area_pred_label, \
-        total_area_label
+        total_area_label, total_true_negative
 
 
 def mean_iou(results,
@@ -288,7 +291,7 @@ def eval_metrics(results,
         raise KeyError('metrics {} is not supported'.format(metrics))
 
     total_area_intersect, total_area_union, total_area_pred_label, \
-        total_area_label = total_intersect_and_union(
+        total_area_label, total_true_negative = total_intersect_and_union(
             results, gt_seg_maps, num_classes, ignore_index, label_map,
             reduce_zero_label)
     all_acc = total_area_intersect.sum() / total_area_label.sum()
@@ -299,12 +302,23 @@ def eval_metrics(results,
             acc = total_area_intersect / total_area_label
             ret_metrics['IoU'] = iou
             ret_metrics['Acc'] = acc
+            whole_tumor_TP = total_true_negative[0] #aggiunto da me (i tn del bkg sono i tp del whole tumor)
+            whole_tumor_FP = total_area_union[0] - total_area_pred_label[0]
+            whole_tumor_FN = total_area_pred_label[0] - total_area_intersect[0]
+            whole_tumor_iou = whole_tumor_TP / (whole_tumor_TP + whole_tumor_FP + whole_tumor_FN)
+            ret_metrics['whole_tumor_IoU'] = whole_tumor_iou
+            
         elif metric == 'mDice':
             dice = 2 * total_area_intersect / (
                 total_area_pred_label + total_area_label)
             acc = total_area_intersect / total_area_label
             ret_metrics['Dice'] = dice
             ret_metrics['Acc'] = acc
+            whole_tumor_TP = total_true_negative[0] #aggiunto da me (i tn del bkg sono i tp del whole tumor)
+            whole_tumor_FP = total_area_union[0] - total_area_pred_label[0]
+            whole_tumor_FN = total_area_pred_label[0] - total_area_intersect[0]
+            whole_tumor_dice = 2*whole_tumor_TP / (2*whole_tumor_TP + whole_tumor_FP + whole_tumor_FN)
+            ret_metrics['whole_tumor_dice'] = whole_tumor_dice
         elif metric == 'mFscore':
             precision = total_area_intersect / total_area_pred_label
             recall = total_area_intersect / total_area_label
