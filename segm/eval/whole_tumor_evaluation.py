@@ -136,29 +136,15 @@ def eval_dataset(
     #print(seg_gt_maps)
     print("STARTING PREPROCESSING")
     for gt_map in seg_gt_maps.values():
-        print(np.unique(gt_map))
-
         gt_map[gt_map==3] = 1
         gt_map[gt_map==2] = 1
 
-        #print(seg_gt_maps)
-        print(np.unique(gt_map))
-
     #postprocessiamo le prediction maps per il problema whole tumor
-    #print(seg_pred_maps)
 
     for pred_map in seg_pred_maps.values():
-        print(pred_map)
-        print(np.unique(pred_map[1]))
-
         pred_map[pred_map==3] = 1
         pred_map[pred_map==2] = 1
 
-    
-    #print(seg_pred_maps)
-        print(np.unique(pred_map))
-        print("FINISHED PREPROCESSING")
-    
     if save_images:
         save_dir = model_dir / "images"
         if ptu.dist_rank == 0:
