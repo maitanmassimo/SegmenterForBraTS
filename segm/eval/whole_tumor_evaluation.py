@@ -135,7 +135,7 @@ def eval_dataset(
     #postprocessiamo le gt maps per il problema whole tumor
     #print(seg_gt_maps)
     print("STARTING PREPROCESSING")
-    for gt_map in seg_gt_maps:
+    for gt_map in seg_gt_maps.values():
         print(np.unique(gt_map))
 
         gt_map[gt_map==3] = 1
@@ -147,8 +147,9 @@ def eval_dataset(
     #postprocessiamo le prediction maps per il problema whole tumor
     #print(seg_pred_maps)
 
-    for pred_map in seg_pred_maps:
-        print(np.unique(pred_map))
+    for pred_map in seg_pred_maps.values():
+        print(pred_map)
+        print(np.unique(pred_map[1]))
 
         pred_map[pred_map==3] = 1
         pred_map[pred_map==2] = 1
