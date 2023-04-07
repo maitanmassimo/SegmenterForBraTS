@@ -133,25 +133,25 @@ def eval_dataset(
     seg_gt_maps = db.dataset.get_gt_seg_maps()
 
     #postprocessiamo le gt maps per il problema whole tumor
-    print(seg_gt_maps)
+    #print(seg_gt_maps)
     print(np.unique(seg_gt_maps))
 
     seg_gt_maps[seg_gt_maps==3] = 1
     seg_gt_maps[seg_gt_maps==2] = 1
 
-    print(seg_gt_maps)
+    #print(seg_gt_maps)
     print(np.unique(seg_gt_maps))
 
     #postprocessiamo le prediction maps per il problema whole tumor
-    print(seg_pred_maps)
+    #print(seg_pred_maps)
     print(np.unique(seg_pred_maps))
 
     seg_pred_maps[seg_pred_maps==3] = 1
     seg_pred_maps[seg_pred_maps==2] = 1
 
-    print(seg_pred_maps)
+    #print(seg_pred_maps)
     print(np.unique(seg_pred_maps))
-    
+
     if save_images:
         save_dir = model_dir / "images"
         if ptu.dist_rank == 0:
@@ -194,7 +194,7 @@ def eval_dataset(
     scores = compute_metrics(
         seg_pred_maps,
         seg_gt_maps,
-        n_cls,
+        2,
         ignore_index=IGNORE_LABEL,
         ret_cat_iou=True,
         distributed=ptu.distributed,
