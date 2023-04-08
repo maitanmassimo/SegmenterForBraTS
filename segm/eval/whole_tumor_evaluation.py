@@ -133,8 +133,6 @@ def eval_dataset(
     seg_gt_maps = db.dataset.get_gt_seg_maps()
 
     #postprocessiamo le gt maps per il problema whole tumor
-    #print(seg_gt_maps)
-    print("STARTING PREPROCESSING")
     for gt_map in seg_gt_maps.values():
         gt_map[gt_map==3] = 1
         gt_map[gt_map==2] = 1
