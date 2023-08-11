@@ -115,6 +115,7 @@ def eval_dataset(
     ims = {}
     seg_pred_maps = {}
     idx = 0
+    print("PRINTING NOT SORTED")
     for batch in logger.log_every(db, print_freq, header):
         colors = batch["colors"]
         filename, im, seg_pred = process_batch(
@@ -124,6 +125,7 @@ def eval_dataset(
             window_stride,
             window_batch_size,
         )
+        print(im)
         ims[filename] = im
         seg_pred_maps[filename] = seg_pred
         idx += 1
@@ -139,7 +141,7 @@ def eval_dataset(
             save_dir.mkdir()
         if ptu.distributed:
             torch.distributed.barrier()
-
+        print("PRINTING SORTED")
         for name in sorted(ims):
             print(name)
             instance_dir = save_dir
