@@ -4,10 +4,10 @@ from torch.utils.data.distributed import DistributedSampler
 import segm.utils.torch as ptu
 
 
-class Loader(DataLoader):
+class LoaderForValidation(DataLoader):
     def __init__(self, dataset, batch_size, num_workers, distributed, split):
         if distributed:
-            sampler = DistributedSampler(dataset, shuffle=True)
+            sampler = DistributedSampler(dataset, shuffle=False)
             super().__init__(
                 dataset,
                 batch_size=batch_size,
@@ -20,7 +20,7 @@ class Loader(DataLoader):
             super().__init__(
                 dataset,
                 batch_size=batch_size,
-                shuffle=True,
+                shuffle=False,
                 num_workers=num_workers,
                 pin_memory=True,
             )

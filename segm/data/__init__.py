@@ -1,5 +1,5 @@
 from segm.data.loader import Loader
-
+from segm.data.loader_for_validation import LoaderForValidation
 from segm.data.imagenet import ImagenetDataset
 from segm.data.ade20k import ADE20KSegmentation
 from segm.data.pascal_context import PascalContextDataset

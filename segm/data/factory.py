@@ -5,7 +5,8 @@ from segm.data import ADE20KSegmentation
 from segm.data import PascalContextDataset
 from segm.data import CityscapesDataset
 from segm.data import BratsSliceDataset
-from segm.data import Loader, LoaderForValidation
+from segm.data import Loader
+from segm.data.loader_for_validation import LoaderForValidation
 
 
 def create_dataset(dataset_kwargs):
