@@ -125,7 +125,7 @@ def eval_dataset(
             window_stride,
             window_batch_size,
         )
-        print(im)
+        print(filename)
         ims[filename] = im
         seg_pred_maps[filename] = seg_pred
         idx += 1
