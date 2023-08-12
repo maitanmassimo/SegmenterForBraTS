@@ -15,7 +15,7 @@ from segm.utils.logger import MetricLogger
 import segm.utils.torch as ptu
 
 from segm.model.factory import load_model
-from segm.data.factory import create_dataset
+from segm.data.factory import create_dataset_for_validation
 from segm.metrics import gather_data, compute_metrics
 
 from segm.model.utils import inference
@@ -99,7 +99,7 @@ def eval_dataset(
     frac_dataset,
     dataset_kwargs,
 ):
-    db = create_dataset(dataset_kwargs)
+    db = create_dataset_for_validation(dataset_kwargs)
     normalization = db.dataset.normalization
     dataset_name = dataset_kwargs["dataset"]
     im_size = dataset_kwargs["image_size"]
@@ -131,7 +131,7 @@ def eval_dataset(
         idx += 1
         if idx > len(db) * frac_dataset:
             break
-    print(sorted(ims))        
+          
     seg_gt_maps = db.dataset.get_gt_seg_maps()
     if save_images:
         save_dir = model_dir / "images"
@@ -143,7 +143,6 @@ def eval_dataset(
             torch.distributed.barrier()
         print("PRINTING SORTED")
         for name in sorted(ims):
-            print(name)
             instance_dir = save_dir
             filename = name
 
