@@ -69,7 +69,7 @@ def create_dataset_for_validation(dataset_kwargs):
         dataset=dataset,
         batch_size=batch_size,
         num_workers=num_workers,
-        distributed=ptu.distributed,
+        distributed=False,
         split=split,
     )
     return dataset
