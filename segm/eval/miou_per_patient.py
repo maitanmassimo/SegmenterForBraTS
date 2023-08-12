@@ -125,13 +125,14 @@ def eval_dataset(
             window_stride,
             window_batch_size,
         )
-        print(filename)
+        
         ims[filename] = im
         seg_pred_maps[filename] = seg_pred
         idx += 1
         if idx > len(db) * frac_dataset:
             break
-          
+
+    print(ims)     
     seg_gt_maps = db.dataset.get_gt_seg_maps()
     if save_images:
         save_dir = model_dir / "images"
