@@ -100,6 +100,8 @@ def eval_dataset(
     dataset_kwargs,
 ):
     db = create_dataset_for_validation(dataset_kwargs)
+    print("PRINTING DB")
+    print(db)
     normalization = db.dataset.normalization
     dataset_name = dataset_kwargs["dataset"]
     im_size = dataset_kwargs["image_size"]
