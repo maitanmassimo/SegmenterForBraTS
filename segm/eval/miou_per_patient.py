@@ -131,7 +131,7 @@ def eval_dataset(
         idx += 1
         if idx > len(db) * frac_dataset:
             break
-
+    print(sorted(ims))        
     seg_gt_maps = db.dataset.get_gt_seg_maps()
     if save_images:
         save_dir = model_dir / "images"
