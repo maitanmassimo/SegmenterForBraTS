@@ -110,9 +110,14 @@ def eval_dataset(
     if multiscale:
         db.dataset.set_multiscale_mode()
 
+    #######DEBUGGING#######
+    for batch in db:
+        print(batch)
+    #######################
+
     logger = MetricLogger(delimiter="  ")
     header = ""
-    print_freq = 1#50
+    print_freq = 50
 
     ims = {}
     seg_pred_maps = {}
