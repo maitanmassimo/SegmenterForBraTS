@@ -142,7 +142,8 @@ class CustomDataset(Dataset):
             list[dict]: All image info of dataset.
         """
         def numerical_sort(value):
-            parts = value.split('_')
+            value1 = value.split('.')
+            parts = value1[0].split('_')
             print_log(f'parts[0]:  {parts[0]}', logger=get_root_logger())
             print_log(f'parts[1]:  {parts[1]}', logger=get_root_logger())
             if len(parts) > 1 and parts[-1].isdigit():
