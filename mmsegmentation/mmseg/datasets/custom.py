@@ -120,6 +120,8 @@ class CustomDataset(Dataset):
 
     def load_annotations(self, img_dir, img_suffix, ann_dir, seg_map_suffix,
                          split):
+        
+        print_log("CALLED LOAD_ANNOTATIONS")
         """Load annotation from directory.
 
         Args:
