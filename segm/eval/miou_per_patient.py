@@ -100,8 +100,6 @@ def eval_dataset(
     dataset_kwargs,
 ):
     db = create_dataset_for_validation(dataset_kwargs)
-    print("PRINTING DB")
-    print(db)
     normalization = db.dataset.normalization
     dataset_name = dataset_kwargs["dataset"]
     im_size = dataset_kwargs["image_size"]
@@ -110,10 +108,6 @@ def eval_dataset(
     if multiscale:
         db.dataset.set_multiscale_mode()
 
-    #######DEBUGGING#######
-    print(db.base_dataset)
-    #######################
-
     logger = MetricLogger(delimiter="  ")
     header = ""
     print_freq = 50
@@ -121,7 +115,6 @@ def eval_dataset(
     ims = {}
     seg_pred_maps = {}
     idx = 0
-    print("PRINTING NOT SORTED")
     for batch in logger.log_every(db, print_freq, header):
         colors = batch["colors"]
         filename, im, seg_pred = process_batch(
@@ -131,14 +124,12 @@ def eval_dataset(
             window_stride,
             window_batch_size,
         )
-        print(filename)
         ims[filename] = im
         seg_pred_maps[filename] = seg_pred
         idx += 1
         if idx > len(db) * frac_dataset:
             break
 
-    print(ims)     
     seg_gt_maps = db.dataset.get_gt_seg_maps()
     if save_images:
         save_dir = model_dir / "images"
@@ -148,7 +139,6 @@ def eval_dataset(
             save_dir.mkdir()
         if ptu.distributed:
             torch.distributed.barrier()
-        print("PRINTING SORTED")
         for name in sorted(ims):
             instance_dir = save_dir
             filename = name

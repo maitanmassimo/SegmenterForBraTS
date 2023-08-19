@@ -6,7 +6,6 @@ import segm.utils.torch as ptu
 
 class LoaderForValidation(DataLoader):
     def __init__(self, dataset, batch_size, num_workers, distributed, split):
-        print("LOADER FOR VALIDATION CAAAAAAAAAAAAAAAAAAAALLED")
         if distributed:
             print("DISTRIBUTED: TRUE")
             sampler = DistributedSampler(dataset, shuffle=False)
