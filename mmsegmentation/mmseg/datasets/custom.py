@@ -155,7 +155,7 @@ class CustomDataset(Dataset):
                         img_info['ann'] = dict(seg_map=seg_map)
                     img_infos.append(img_info)
         else:
-            for img in mmcv.scandir(img_dir, img_suffix, recursive=True):
+            for img in sorted(mmcv.scandir(img_dir, img_suffix, recursive=True)):
                 print_log(f'Image name:  {img}', logger=get_root_logger())
                 img_info = dict(filename=img)
                 if ann_dir is not None:
