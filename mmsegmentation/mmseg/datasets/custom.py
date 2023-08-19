@@ -110,6 +110,11 @@ class CustomDataset(Dataset):
                 self.split = osp.join(self.data_root, self.split)
 
         # load annotations
+        print_log(f'img_dir:  {img_dir}', logger=get_root_logger())
+        print_log(f'img_suffix:  {img_suffix}', logger=get_root_logger())
+        print_log(f'ann_dir:  {ann_dir}', logger=get_root_logger())
+        print_log(f'seg_map_suffix:  {seg_map_suffix}', logger=get_root_logger())
+
         self.img_infos = self.load_annotations(self.img_dir, self.img_suffix,
                                                self.ann_dir,
                                                self.seg_map_suffix, self.split)
