@@ -141,6 +141,12 @@ class CustomDataset(Dataset):
         Returns:
             list[dict]: All image info of dataset.
         """
+        def numerical_sort(value):
+            parts = value.split('_')
+            if len(parts) > 1 and parts[-1].isdigit():
+                return [int(parts[-1])]
+            return [value]
+
         print_log(f'SPLIT:  {split}', logger=get_root_logger())
         img_infos = []
         if split is not None:
@@ -155,7 +161,7 @@ class CustomDataset(Dataset):
                         img_info['ann'] = dict(seg_map=seg_map)
                     img_infos.append(img_info)
         else:
-            for img in sorted(mmcv.scandir(img_dir, img_suffix, recursive=True)):
+            for img in sorted(mmcv.scandir(img_dir, img_suffix, recursive=True), key=numerical_sort):
                 print_log(f'Image name:  {img}', logger=get_root_logger())
                 img_info = dict(filename=img)
                 if ann_dir is not None:
