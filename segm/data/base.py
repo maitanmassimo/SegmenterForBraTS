@@ -145,6 +145,8 @@ class BaseMMSeg(Dataset):
         tot = len(dataset.img_infos)
         i = 0
         for img_info in dataset.img_infos:
+            print("IN GET_GT_SEG_MAPS")
+            print(img_info["filename"])
             seg_map = Path(dataset.ann_dir) / img_info["ann"]["seg_map"]
             gt_seg_map = mmcv.imread(seg_map, flag="unchanged", backend="pillow")
             gt_seg_map[gt_seg_map == self.ignore_label] = IGNORE_LABEL
