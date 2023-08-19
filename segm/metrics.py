@@ -95,8 +95,8 @@ def compute_metrics(
     if ptu.dist_rank == 0:
         list_seg_pred = []
         list_seg_gt = []
-        keys = sorted(seg_pred.keys())
-        for k in keys:
+        #keys = sorted(seg_pred.keys())
+        for k in seg_pred.keys:
             print(k)
             list_seg_pred.append(np.asarray(seg_pred[k]))
             list_seg_gt.append(np.asarray(seg_gt[k]))
