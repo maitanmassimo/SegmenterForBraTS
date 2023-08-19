@@ -50,6 +50,7 @@ class BaseMMSeg(Dataset):
         self.config = self.update_default_config(config)
         print("GETATTR: {}".format(getattr(self.config.data, f"{self.split}")))
         print("Is instance:{}!".format(isinstance(getattr(self.config.data, f"{self.split}"), (list, tuple))))
+        print("calling build_dataset")
         self.dataset = build_dataset(getattr(self.config.data, f"{self.split}"))
 
     def update_default_config(self, config):
