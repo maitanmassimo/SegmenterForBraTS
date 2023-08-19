@@ -111,8 +111,7 @@ def eval_dataset(
         db.dataset.set_multiscale_mode()
 
     #######DEBUGGING#######
-    for batch in db:
-        print(batch)
+    print(db.base_dataset)
     #######################
 
     logger = MetricLogger(delimiter="  ")
