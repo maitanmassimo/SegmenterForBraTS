@@ -8,6 +8,7 @@ class LoaderForValidation(DataLoader):
     def __init__(self, dataset, batch_size, num_workers, distributed, split):
         print("LOADER FOR VALIDATION CAAAAAAAAAAAAAAAAAAAALLED")
         if distributed:
+            print("DISTRIBUTED: TRUE")
             sampler = DistributedSampler(dataset, shuffle=False)
             super().__init__(
                 dataset,
@@ -18,6 +19,7 @@ class LoaderForValidation(DataLoader):
                 sampler=sampler,
             )
         else:
+            print("DISTRIBUTED: FALSE")
             super().__init__(
                 dataset,
                 batch_size=batch_size,
