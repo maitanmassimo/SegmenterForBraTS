@@ -136,7 +136,7 @@ class CustomDataset(Dataset):
         Returns:
             list[dict]: All image info of dataset.
         """
-
+        print_log(f'SPLIT:  {split}', logger=get_root_logger())
         img_infos = []
         if split is not None:
             print_log(f'SPLIT:  {split}', logger=get_root_logger())
@@ -151,7 +151,7 @@ class CustomDataset(Dataset):
                     img_infos.append(img_info)
         else:
             for img in mmcv.scandir(img_dir, img_suffix, recursive=True):
-
+                print_log(f'Image name:  {img}', logger=get_root_logger())
                 img_info = dict(filename=img)
                 if ann_dir is not None:
                     seg_map = img.replace(img_suffix, seg_map_suffix)
