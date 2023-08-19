@@ -146,8 +146,8 @@ class CustomDataset(Dataset):
             print_log(f'parts[0]:  {parts[0]}', logger=get_root_logger())
             print_log(f'parts[1]:  {parts[1]}', logger=get_root_logger())
             if len(parts) > 1 and parts[-1].isdigit():
-                print_log(f'number detected:  {int(parts[-1])}', logger=get_root_logger())
-                return int(parts[-1])
+                print_log(f'number detected:  {int(parts[1])}', logger=get_root_logger())
+                return int(parts[1])
             return value
 
         print_log(f'SPLIT:  {split}', logger=get_root_logger())
