@@ -112,7 +112,7 @@ def eval_dataset(
 
     logger = MetricLogger(delimiter="  ")
     header = ""
-    print_freq = 50
+    print_freq = 1#50
 
     ims = {}
     seg_pred_maps = {}
