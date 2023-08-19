@@ -139,9 +139,11 @@ class CustomDataset(Dataset):
 
         img_infos = []
         if split is not None:
+            print_log(f'SPLIT:  {split}', logger=get_root_logger())
             with open(split) as f:
                 for line in f:
                     img_name = line.strip()
+                    print_log(f'Image name:  {img_name}', logger=get_root_logger())
                     img_info = dict(filename=img_name + img_suffix)
                     if ann_dir is not None:
                         seg_map = img_name + seg_map_suffix
@@ -149,6 +151,7 @@ class CustomDataset(Dataset):
                     img_infos.append(img_info)
         else:
             for img in mmcv.scandir(img_dir, img_suffix, recursive=True):
+
                 img_info = dict(filename=img)
                 if ann_dir is not None:
                     seg_map = img.replace(img_suffix, seg_map_suffix)
