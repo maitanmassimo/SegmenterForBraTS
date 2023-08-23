@@ -96,10 +96,8 @@ def compute_metrics(
         list_seg_pred = []
         list_seg_gt = []
         #keys = sorted(seg_pred.keys())
-        n_iteration = 0
         for k in seg_pred.keys():
-            n_patient = n_iteration/128
-            print("{} -> {}".format(k, n_patient))
+            print(k)
             list_seg_pred.append(np.asarray(seg_pred[k]))
             list_seg_gt.append(np.asarray(seg_gt[k]))
         ret_metrics = mean_iou(
