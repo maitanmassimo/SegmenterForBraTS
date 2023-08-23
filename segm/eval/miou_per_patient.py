@@ -189,8 +189,12 @@ def eval_dataset(
         
         scores_per_patient_total[n] = scores_per_patient
 
-    print(scores_per_patient_total)
-
+    
+    if ptu.dist_rank == 0:
+        suffix = "ss" if not multiscale else "ms"
+        scores_per_patient_str = yaml.dump(scores_per_patient_total)
+        with open(model_dir / f"scores_{suffix}_per patient.yml", "w") as f:
+            f.write(scores_per_patient_str)
 
     scores = compute_metrics(
         seg_pred_maps,
