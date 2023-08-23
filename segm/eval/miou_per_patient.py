@@ -194,7 +194,7 @@ def eval_dataset(
         with open(model_dir / f"scores_{suffix}.yml", "w") as f:
             f.write(scores_str)
 
-    for n in len(seg_gt_maps)/128:
+    for n in range(len(seg_gt_maps)/128):
         
         print("patient n: {}".format(n))
         print("{} -> {}".format(n*128, ((n+1)*128-1)))
