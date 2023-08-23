@@ -169,6 +169,22 @@ def eval_dataset(
         torch.distributed.barrier()
         seg_pred_maps = gather_data(seg_pred_maps)
 
+    print(len(seg_gt_maps)/128)
+    for n in range(int(len(seg_gt_maps)/128)):
+        
+        print("patient n: {}".format(n))
+        print("{} -> {}".format(n*128, ((n+1)*128-1)))
+        seg_pred_maps_patient = seg_pred_maps[n*128:((n+1)*128-1)]
+        seg_gt_maps_patient = seg_gt_maps[n*128:((n+1)*128-1)]
+        #scores_per_patient = compute_metrics(
+        #    seg_pred_maps_patient,
+        #    seg_gt_maps_patient,
+        #    n_cls,
+        #    ignore_index=IGNORE_LABEL,
+        #    ret_cat_iou=True,
+        #    distributed=ptu.distributed,
+        #)
+
     scores = compute_metrics(
         seg_pred_maps,
         seg_gt_maps,
@@ -193,21 +209,8 @@ def eval_dataset(
         scores_str = yaml.dump(scores)
         with open(model_dir / f"scores_{suffix}.yml", "w") as f:
             f.write(scores_str)
-
-    for n in range(len(seg_gt_maps)/128):
-        
-        print("patient n: {}".format(n))
-        print("{} -> {}".format(n*128, ((n+1)*128-1)))
-        seg_pred_maps_patient = seg_pred_maps[n*128:((n+1)*128-1)]
-        seg_gt_maps_patient = seg_gt_maps[n*128:((n+1)*128-1)]
-        #scores_per_patient = compute_metrics(
-        #    seg_pred_maps_patient,
-        #    seg_gt_maps_patient,
-        #    n_cls,
-        #    ignore_index=IGNORE_LABEL,
-        #    ret_cat_iou=True,
-        #    distributed=ptu.distributed,
-        #)
+    
+    
 @click.command()
 @click.argument("model_path", type=str)
 @click.argument("dataset_name", type=str)
