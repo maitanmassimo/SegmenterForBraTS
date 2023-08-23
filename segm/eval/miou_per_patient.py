@@ -187,7 +187,7 @@ def eval_dataset(
             distributed=ptu.distributed,
         )
         
-        scores_per_patient_total[n] = scores_per_patient
+        scores_per_patient_total[str(n)] = scores_per_patient
 
     
     if ptu.dist_rank == 0:
