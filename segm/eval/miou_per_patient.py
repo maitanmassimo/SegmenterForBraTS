@@ -5,7 +5,7 @@ import yaml
 import numpy as np
 from PIL import Image
 import shutil
-
+import itertools
 import torch
 import torch.nn.functional as F
 from torch.nn.parallel import DistributedDataParallel as DDP
@@ -169,21 +169,28 @@ def eval_dataset(
         torch.distributed.barrier()
         seg_pred_maps = gather_data(seg_pred_maps)
 
+    scores_per_patient_total = {}
+    
     print(len(seg_gt_maps)/128)
     for n in range(int(len(seg_gt_maps)/128)):
         
         print("patient n: {}".format(n))
         print("{} -> {}".format(n*128, ((n+1)*128-1)))
-        seg_pred_maps_patient = seg_pred_maps[n*128:((n+1)*128-1)]
-        seg_gt_maps_patient = seg_gt_maps[n*128:((n+1)*128-1)]
-        #scores_per_patient = compute_metrics(
-        #    seg_pred_maps_patient,
-        #    seg_gt_maps_patient,
-        #    n_cls,
-        #    ignore_index=IGNORE_LABEL,
-        #    ret_cat_iou=True,
-        #    distributed=ptu.distributed,
-        #)
+        seg_pred_maps_patient = dict(itertools.islice(seg_pred_maps.items(), n*128,((n+1)*128-1)))
+        seg_gt_maps_patient = dict(itertools.islice(seg_gt_maps.items(), n*128,((n+1)*128-1)))
+        scores_per_patient = compute_metrics(
+            seg_pred_maps_patient,
+            seg_gt_maps_patient,
+            n_cls,
+            ignore_index=IGNORE_LABEL,
+            ret_cat_iou=True,
+            distributed=ptu.distributed,
+        )
+        print(scores_per_patient)
+        scores_per_patient_total[n] = scores_per_patient
+
+    print(scores_per_patient)
+
 
     scores = compute_metrics(
         seg_pred_maps,
