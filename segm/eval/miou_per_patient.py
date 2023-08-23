@@ -176,8 +176,8 @@ def eval_dataset(
         
         print("patient n: {}".format(n))
         print("{} -> {}".format(n*128, ((n+1)*128-1)))
-        seg_pred_maps_patient = dict(itertools.islice(seg_pred_maps.items(), n*128,((n+1)*128-1)))
-        seg_gt_maps_patient = dict(itertools.islice(seg_gt_maps.items(), n*128,((n+1)*128-1)))
+        seg_pred_maps_patient = dict(itertools.islice(seg_pred_maps.items(), n*128,((n+1)*128)))
+        seg_gt_maps_patient = dict(itertools.islice(seg_gt_maps.items(), n*128,((n+1)*128)))
         scores_per_patient = compute_metrics(
             seg_pred_maps_patient,
             seg_gt_maps_patient,
@@ -186,10 +186,10 @@ def eval_dataset(
             ret_cat_iou=True,
             distributed=ptu.distributed,
         )
-        print(scores_per_patient)
+        
         scores_per_patient_total[n] = scores_per_patient
 
-    print(scores_per_patient)
+    print(scores_per_patient_total)
 
 
     scores = compute_metrics(
