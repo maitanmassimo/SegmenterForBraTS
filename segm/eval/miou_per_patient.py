@@ -187,6 +187,7 @@ def eval_dataset(
             distributed=ptu.distributed,
         )
         
+        print(scores_per_patient)
         scores_per_patient_total[str(n)] = scores_per_patient
 
     
