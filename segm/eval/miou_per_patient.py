@@ -190,6 +190,8 @@ def eval_dataset(
         print(scores_per_patient)
         scores_per_patient_total[str(n)] = scores_per_patient
 
+    print("FINAL DICTIONARY")
+    print(scores_per_patient_total)
     
     if ptu.dist_rank == 0:
         suffix = "ss" if not multiscale else "ms"
