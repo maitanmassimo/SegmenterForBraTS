@@ -186,7 +186,11 @@ def eval_dataset(
             ret_cat_iou=True,
             distributed=ptu.distributed,
         )
-        
+        scores_per_patient["cat_iou"] = np.round(100 * scores_per_patient["cat_iou"], 2).tolist()
+        scores_per_patient["cat_dice"] = np.round(100 * scores_per_patient["cat_dice"], 2).tolist()
+        for k, v in scores_per_patient.items():
+            if k != "cat_iou" and k != "cat_dice" and k != "inference":
+                scores_per_patient[k] = v.item()
         print(scores_per_patient)
         scores_per_patient_total[str(n)] = scores_per_patient
 
