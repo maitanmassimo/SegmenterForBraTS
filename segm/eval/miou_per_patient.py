@@ -199,7 +199,7 @@ def eval_dataset(
     
     if ptu.dist_rank == 0:
         suffix = "ss" if not multiscale else "ms"
-        scores_per_patient_str = yaml.dump(scores_per_patient_total)
+        scores_per_patient_str = yaml.dump(scores_per_patient_total, sort_keys=False)
         with open(model_dir / f"scores_{suffix}_per patient.yml", "w") as f:
             f.write(scores_per_patient_str)
 
