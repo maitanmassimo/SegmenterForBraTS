@@ -65,6 +65,8 @@ def create_dataset_for_validation(dataset_kwargs):
         dataset = CityscapesDataset(split=split, **dataset_kwargs)
     elif dataset_name == "brats_slice":
         dataset = BratsSliceDataset(split=split, **dataset_kwargs)
+    elif dataset_name == "brats_slice_wt":
+        dataset = BratsSliceWTDataset(split=split, **dataset_kwargs)
     else:
         raise ValueError(f"Dataset {dataset_name} is unknown.")
 
