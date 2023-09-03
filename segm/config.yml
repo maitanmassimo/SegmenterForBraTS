@@ -174,3 +174,12 @@ dataset:
     crop_size: 384
     window_size: 384
     window_stride: 384
+  brats_slice_wt:
+    epochs: 3000
+    eval_freq: 10
+    batch_size: 10
+    learning_rate: 0.001
+    im_size: 384
+    crop_size: 384
+    window_size: 384
+    window_stride: 384
