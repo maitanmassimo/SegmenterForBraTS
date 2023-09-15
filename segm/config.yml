@@ -150,7 +150,7 @@ decoder:
   mask_transformer:
     drop_path_rate: 0.0
     dropout: 0.1
-    n_layers: 8
+    n_layers: 4
 dataset:
   ade20k:
     epochs: 64
