@@ -115,6 +115,13 @@ model:
     n_heads: 2
     n_layers: 2
     normalization: vit
+  vit_large_patch6_180:
+    image_size: 180
+    patch_size: 6
+    d_model: 256
+    n_heads: 16
+    n_layers: 16
+    normalization: vit
   vit_small_patch30_180:
     image_size: 180
     patch_size: 30
