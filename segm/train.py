@@ -125,7 +125,7 @@ def main(
             batch_size=batch_size,
             normalization=model_cfg["normalization"],
             split="train",
-            num_workers=2,
+            num_workers=1,
         ),
         algorithm_kwargs=dict(
             batch_size=batch_size,
