@@ -66,6 +66,11 @@ def main(
     amp,
     resume,
 ):
+    
+    ########ADDED BY ME
+    torch.cuda.empty_cache()
+    #########################
+
     # start distributed mode
     ptu.set_gpu_mode(True)
     distributed.init_process()
@@ -125,7 +130,7 @@ def main(
             batch_size=batch_size,
             normalization=model_cfg["normalization"],
             split="train",
-            num_workers=1,
+            num_workers=10,
         ),
         algorithm_kwargs=dict(
             batch_size=batch_size,
