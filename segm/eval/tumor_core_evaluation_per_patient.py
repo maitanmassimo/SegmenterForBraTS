@@ -133,12 +133,12 @@ def eval_dataset(
     seg_gt_maps = db.dataset.get_gt_seg_maps()
 
 
-    #postprocessiamo le gt maps per il problema whole tumor
+    #postprocessiamo le gt maps per il problema tumor core
     for gt_map in seg_gt_maps.values():
         gt_map[gt_map==3] = 1
         gt_map[gt_map==1] = 1
 
-    #postprocessiamo le prediction maps per il problema whole tumor
+    #postprocessiamo le prediction maps per il problema tumor core
 
     for pred_map in seg_pred_maps.values():
         pred_map[pred_map==3] = 1
@@ -196,7 +196,7 @@ def eval_dataset(
         scores_per_patient = compute_metrics(
             seg_pred_maps_patient,
             seg_gt_maps_patient,
-            2,
+            3,
             ignore_index=IGNORE_LABEL,
             ret_cat_iou=True,
             distributed=ptu.distributed,
@@ -221,7 +221,7 @@ def eval_dataset(
     scores = compute_metrics(
         seg_pred_maps,
         seg_gt_maps,
-        2,
+        3,
         ignore_index=IGNORE_LABEL,
         ret_cat_iou=True,
         distributed=ptu.distributed,
