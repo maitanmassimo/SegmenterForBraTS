@@ -240,7 +240,7 @@ def eval_dataset(
             if k != "cat_iou" and k != "cat_dice" :
                 print(f"{k}: {scores[k]}")
         scores_str = yaml.dump(scores)
-        with open(model_dir / f"scores_{suffix}.yml", "w") as f:
+        with open(model_dir / f"scores_{suffix}_tc.yml", "w") as f:
             f.write(scores_str)
     
     
