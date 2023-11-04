@@ -184,10 +184,10 @@ dataset:
     eval_freq: 10
     batch_size: 1
     learning_rate: 0.001
-    im_size: 180
-    crop_size: 180
-    window_size: 180
-    window_stride: 180
+    im_size: 384
+    crop_size: 384
+    window_size: 384
+    window_stride: 384
   brats_slice_wt:
     epochs: 3000
     eval_freq: 10
