@@ -188,7 +188,7 @@ dataset:
     window_stride: 512
   brats_slice:
     epochs: 3000
-    eval_freq: 10
+    eval_freq: 100
     batch_size: 10
     learning_rate: 0.001
     im_size: 180
