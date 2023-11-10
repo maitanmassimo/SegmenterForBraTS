@@ -6,3 +6,5 @@ from segm.data.pascal_context import PascalContextDataset
 from segm.data.cityscapes import CityscapesDataset
 from segm.data.brats_slice import BratsSliceDataset
 from segm.data.brats_slice_wt import BratsSliceWTDataset
+from segm.data.brats_slice_test import BratsSliceDatasetTest
+from segm.data.brats_slice_wt_test import BratsSliceWTDatasetTest
