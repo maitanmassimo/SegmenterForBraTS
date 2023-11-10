@@ -1,6 +1,8 @@
 from .ade import ADE20KDataset
 from .brats_slice import BratsSliceDataset
 from .brats_slice_wt import BratsSliceWTDataset
+from .brats_slice_test import BratsSliceDatasetTest
+from .brats_slice_wt_test import BratsSliceWTDatasetTest
 from .builder import DATASETS, PIPELINES, build_dataloader, build_dataset
 from .chase_db1 import ChaseDB1Dataset
 from .cityscapes import CityscapesDataset
