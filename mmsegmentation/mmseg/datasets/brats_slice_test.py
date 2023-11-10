@@ -10,7 +10,7 @@ from .custom import CustomDataset
 
 
 @DATASETS.register_module()
-class BratsSliceDataset(CustomDataset):
+class BratsSliceDatasetTest(CustomDataset):
     """BratsSlice dataset.
 
     In segmentation map annotation for ADE20K, 0 stands for background, which
@@ -28,7 +28,7 @@ class BratsSliceDataset(CustomDataset):
     #PALETTE = [[63, 63, 63], [127, 127, 127], [255, 255, 255]]
 
     def __init__(self, **kwargs):
-        super(BratsSliceDataset, self).__init__(
+        super(BratsSliceDatasetTest, self).__init__(
             img_suffix='.png',
             seg_map_suffix='.png',
             reduce_zero_label=False,#True,

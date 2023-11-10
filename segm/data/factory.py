@@ -6,6 +6,8 @@ from segm.data import PascalContextDataset
 from segm.data import CityscapesDataset
 from segm.data import BratsSliceDataset
 from segm.data import BratsSliceWTDataset
+from segm.data import BratsSliceDatasetTest
+from segm.data import BratsSliceWTDatasetTest
 from segm.data import Loader
 from segm.data.loader_for_validation import LoaderForValidation
 
@@ -33,9 +35,9 @@ def create_dataset(dataset_kwargs):
     elif dataset_name == "brats_slice_wt":
         dataset = BratsSliceWTDataset(split=split, **dataset_kwargs)
     elif dataset_name == "brats_slice_test":
-        dataset = BratsSliceDataset(split=split, **dataset_kwargs)
+        dataset = BratsSliceDatasetTest(split=split, **dataset_kwargs)
     elif dataset_name == "brats_slice_wt_test":
-        dataset = BratsSliceWTDataset(split=split, **dataset_kwargs)
+        dataset = BratsSliceWTDatasetTest(split=split, **dataset_kwargs)
     else:
         raise ValueError(f"Dataset {dataset_name} is unknown.")
 
@@ -72,9 +74,9 @@ def create_dataset_for_validation(dataset_kwargs):
     elif dataset_name == "brats_slice_wt":
         dataset = BratsSliceWTDataset(split=split, **dataset_kwargs)
     elif dataset_name == "brats_slice_test":
-        dataset = BratsSliceDataset(split=split, **dataset_kwargs)
+        dataset = BratsSliceDatasetTest(split=split, **dataset_kwargs)
     elif dataset_name == "brats_slice_wt_test":
-        dataset = BratsSliceWTDataset(split=split, **dataset_kwargs)
+        dataset = BratsSliceWTDatasetTest(split=split, **dataset_kwargs)
     else:
         raise ValueError(f"Dataset {dataset_name} is unknown.")
 
