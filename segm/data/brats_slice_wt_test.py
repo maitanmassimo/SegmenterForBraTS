@@ -13,7 +13,7 @@ brats_slice_CONFIG_PATH = Path(__file__).parent / "config" / "brats_slice_wt_tes
 brats_slice_CATS_PATH = Path(__file__).parent / "config" / "brats_slice_wt.yml"
 
 
-class BratsSliceWTDataset(BaseMMSeg):
+class BratsSliceWTDatasetTest(BaseMMSeg):
     def __init__(self, image_size, crop_size, split, **kwargs):
     #def __init__(self, image_size=180, crop_size=180, split='train', **kwargs):
         print("CLASS DEFINITION ARGS: ")
