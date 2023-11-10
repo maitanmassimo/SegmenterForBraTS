@@ -204,3 +204,21 @@ dataset:
     crop_size: 180
     window_size: 180
     window_stride: 180
+  brats_slice_test:
+    epochs: 3000
+    eval_freq: 100
+    batch_size: 10
+    learning_rate: 0.001
+    im_size: 180
+    crop_size: 180
+    window_size: 180
+    window_stride: 180
+  brats_slice_wt_test:
+    epochs: 3000
+    eval_freq: 10
+    batch_size: 10
+    learning_rate: 0.001
+    im_size: 180
+    crop_size: 180
+    window_size: 180
+    window_stride: 180
