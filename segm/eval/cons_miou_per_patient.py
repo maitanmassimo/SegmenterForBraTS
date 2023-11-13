@@ -210,6 +210,7 @@ def eval_dataset(
     filtered_total_seg_gt_maps = seg_gt_maps
     for n in range(len(seg_gt_maps)):
         if n%128 == 127 or n%128 == 126:
+            print(f"FILTERING OUT {n} : image {n+2}")
             del filtered_total_seg_pred_maps[next(itertools.islice(filtered_total_seg_pred_maps,n,None))]
             del filtered_total_seg_gt_maps[next(itertools.islice(filtered_total_seg_gt_maps,n,None))]
 
