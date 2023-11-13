@@ -187,8 +187,8 @@ def eval_dataset(
             ret_cat_iou=True,
             distributed=ptu.distributed,
         )
-        filtered_total_seg_pred_maps.append(seg_pred_maps_patient)
-        filtered_total_seg_gt_maps.append(seg_gt_maps_patient)
+        filtered_total_seg_pred_maps[n]= seg_pred_maps_patient
+        filtered_total_seg_gt_maps[n] = seg_gt_maps_patient
         scores_per_patient["cat_iou"] = np.round(100 * scores_per_patient["cat_iou"], 2).tolist()
         scores_per_patient["cat_dice"] = np.round(100 * scores_per_patient["cat_dice"], 2).tolist()
         for k, v in scores_per_patient.items():
