@@ -214,7 +214,7 @@ def eval_dataset(
             del filtered_total_seg_pred_maps[next(itertools.islice(filtered_total_seg_pred_maps,n,None))]
             del filtered_total_seg_gt_maps[next(itertools.islice(filtered_total_seg_gt_maps,n,None))]
 
-    print(filtered_total_seg_gt_maps)    
+    #print(filtered_total_seg_gt_maps.keys())    
 
     scores = compute_metrics(
         #seg_pred_maps,
