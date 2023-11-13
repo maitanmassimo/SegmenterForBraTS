@@ -210,8 +210,8 @@ def eval_dataset(
     filtered_total_seg_gt_maps = seg_gt_maps
     for n in range(len(seg_gt_maps)):
         if n%128 == 127 or n%128 == 126:
-            del filtered_total_seg_pred_maps[itertools.islice(filtered_total_seg_pred_maps,n,None)]
-            del filtered_total_seg_gt_maps[itertools.islice(filtered_total_seg_gt_maps,n,None)]
+            del filtered_total_seg_pred_maps[next(itertools.islice(filtered_total_seg_pred_maps,n,None))]
+            del filtered_total_seg_gt_maps[next(itertools.islice(filtered_total_seg_gt_maps,n,None))]
 
     print(filtered_total_seg_gt_maps)    
 
