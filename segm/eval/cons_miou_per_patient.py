@@ -208,13 +208,17 @@ def eval_dataset(
     #filtering superpositioned images   
     filtered_total_seg_pred_maps = seg_pred_maps
     filtered_total_seg_gt_maps = seg_gt_maps
+    lst_to_del = []
     for n in range(len(seg_gt_maps)):
         if n%128 == 127 or n%128 == 126:
             print(f"FILTERING OUT {n} : image {n+2}")
             to_del = next(itertools.islice(filtered_total_seg_pred_maps,n,None))
             print(to_del)
-            del filtered_total_seg_pred_maps[to_del]
-            del filtered_total_seg_gt_maps[to_del]
+            lst_to_del.append(to_del)
+    for n in lst_to_del:
+        print(f"FILTERING OUT {n}")
+        del filtered_total_seg_pred_maps[n]
+        del filtered_total_seg_gt_maps[n]
 
     print(filtered_total_seg_gt_maps.keys())    
 
