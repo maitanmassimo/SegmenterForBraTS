@@ -187,8 +187,7 @@ def eval_dataset(
             ret_cat_iou=True,
             distributed=ptu.distributed,
         )
-        filtered_total_seg_pred_maps[n]= seg_pred_maps_patient
-        filtered_total_seg_gt_maps[n] = seg_gt_maps_patient
+        
         scores_per_patient["cat_iou"] = np.round(100 * scores_per_patient["cat_iou"], 2).tolist()
         scores_per_patient["cat_dice"] = np.round(100 * scores_per_patient["cat_dice"], 2).tolist()
         for k, v in scores_per_patient.items():
@@ -205,6 +204,16 @@ def eval_dataset(
         scores_per_patient_str = yaml.dump(scores_per_patient_total, sort_keys=False)
         with open(model_dir / f"scores_{suffix}_per patient.yml", "w") as f:
             f.write(scores_per_patient_str)
+
+    #filtering superpositioned images   
+    filtered_total_seg_pred_maps = seg_pred_maps
+    filtered_total_seg_gt_maps = seg_gt_maps
+    for n in range(len(seg_gt_maps)):
+        if n%128 == 127 and n%128 == 126:
+            del filtered_total_seg_pred_maps[n]
+            del filtered_total_seg_gt_maps[n]
+
+    print(filtered_total_seg_gt_maps)    
 
     scores = compute_metrics(
         #seg_pred_maps,
