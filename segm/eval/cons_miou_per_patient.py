@@ -211,10 +211,11 @@ def eval_dataset(
     for n in range(len(seg_gt_maps)):
         if n%128 == 127 or n%128 == 126:
             print(f"FILTERING OUT {n} : image {n+2}")
+            print(f"deleting image {next(itertools.islice(filtered_total_seg_pred_maps,n,None)) +2}")
             del filtered_total_seg_pred_maps[next(itertools.islice(filtered_total_seg_pred_maps,n,None))]
             del filtered_total_seg_gt_maps[next(itertools.islice(filtered_total_seg_gt_maps,n,None))]
 
-    #print(filtered_total_seg_gt_maps.keys())    
+    print(filtered_total_seg_gt_maps.keys())    
 
     scores = compute_metrics(
         #seg_pred_maps,
