@@ -209,7 +209,7 @@ def eval_dataset(
     filtered_total_seg_pred_maps = seg_pred_maps
     filtered_total_seg_gt_maps = seg_gt_maps
     for n in range(len(seg_gt_maps)):
-        if n%128 == 127 and n%128 == 126:
+        if n%128 == 127 or n%128 == 126:
             del filtered_total_seg_pred_maps[n]
             del filtered_total_seg_gt_maps[n]
 
