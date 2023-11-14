@@ -60,8 +60,8 @@ def main(model_path, input_dir, output_dir, gpu):
         pil_seg = Image.fromarray(seg_rgb[0])
 
         pil_blend = Image.blend(pil_im, pil_seg, 0.5).convert("RGB")
-        pil_blend.save(output_dir / "blend_"+ filename.name)
-        pil_seg.save(output_dir / filename.name)
+        pil_blend.save(output_dir / filename.name)
+        #pil_seg.save(output_dir / filename.name)
 
 if __name__ == "__main__":
     main()
